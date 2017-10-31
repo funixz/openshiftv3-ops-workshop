@@ -152,10 +152,11 @@ This is the config I used on my AWS instance (I'm using my master as a node) sav
 
 __Things to note__
 
-* The `manage` is the hostname (REQUIRED) that openshift sees (i.e. `oc get nodes`) and the `storage` is the ip of that host (REQUIRED)
+* The `manage` is the hostname (REQUIRED) that openshift sees (i.e. `oc get nodes`).
+* The `storage` is the ip of that host noted in `manage` (REQUIRED).
 * The device `/dev/xvdf` is a *RAW* storage deviced attached and unformated (no partitions, no LVM flags, nothing). 
 * I've ran into trouble with drives less than 100GB...the ones I used are 250GB each. YMMV
-* Remeber to increment your `zone` number in the json or you're going to have a bad time
+* Remeber to increment your `zone` number in the json or you're going to have a bad time.
 
 Install with
 
@@ -165,7 +166,7 @@ cns-deploy -n glusterfs -g -y -c oc cns.json
 
 Command options are
 
-* `-n` : namespace/project name
+* `-n` : namespace/project name (`glusterfs` above would be the namespace *you* have chosen for this storage)
 * `-g` : Deploy GlusterFS nodes
 * `-y` : Assume "yes" to questions
 * `-c` : The command line utility to use (you can use `oc` or `kubectl`)
@@ -262,4 +263,4 @@ oc annotate storageclass gluster-container storageclass.beta.kubernetes.io/is-de
 
 ## Profit!
 
-Now you should be able to create a pvc and have that bound on the WebUI
+Now you should be able to create a PVC and have that bound on the WebUI
